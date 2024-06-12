@@ -1,4 +1,4 @@
-import pandas
+import panda
 from datetime import date
 date = date.today()
 df = pandas.read_csv('Progress.csv', index_col=False)
