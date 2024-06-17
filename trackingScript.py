@@ -19,7 +19,7 @@ df.to_csv('./Progress.csv', index=False)
 #Launching the website of choice
 driver = webdriver.Firefox()
 driver.maximize_window()
-address = 'https://copilot.microsoft.com/'
+address = 'https://www.google.com/'
 driver.get(address)
 
 
