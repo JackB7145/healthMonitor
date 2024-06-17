@@ -2,7 +2,6 @@
 import pandas
 from datetime import date
 from selenium import webdriver
-import subprocess
 
 #Prompting the user for all of the relevent information
 date = date.today()
@@ -17,14 +16,10 @@ newLine = pandas.DataFrame([{"Date":date, "Weight (lb)": w, "Sleep (Hours)":s, "
 df = pandas.concat([df, newLine], ignore_index=True)
 df.to_csv('./Progress.csv', index=False)
 
-#Closing all applications on my computer
-subprocess.call("taskkill /F /IM .exe", shell=True)
-
 #Launching the website of choice
 driver = webdriver.Firefox()
 driver.maximize_window()
-address = ''
+address = 'https://copilot.microsoft.com/'
 driver.get(address)
-
 
 
