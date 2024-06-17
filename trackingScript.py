@@ -1,5 +1,7 @@
 import pandas
 from datetime import date
+from selenium import webdriver
+
 date = date.today()
 df = pandas.read_csv('Progress.csv', index_col=False)
 w = eval(input("Enter your weight in pounds: "))
@@ -9,4 +11,12 @@ e = input("Did you workout today (Yes/No)? ")
 newLine = pandas.DataFrame([{"Date":date, "Weight (lb)": w, "Sleep (Hours)":s, "Work Completed (1-10)":q, "Worked Out":e}])
 df = pandas.concat([df, newLine], ignore_index=True)
 df.to_csv('./Progress.csv', index=False)
+
+driver = webdriver.Firefox()
+driver.maximize_window()
+
+address = ''
+driver.get(address)
+
+
 
