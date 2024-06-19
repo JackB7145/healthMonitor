@@ -1,0 +1,1 @@
+start powershell -Command "Get-Process | Where-Object { $_.MainWindowTitle -and $_.Name -notin 'cmd', 'Discord'} | Stop-Process -Force"
