@@ -2,6 +2,10 @@
 import pandas
 from datetime import date
 from selenium import webdriver
+import subprocess
+
+# Calling the batch file to close applications except for VS Code, Discord, and Command Prompt
+subprocess.run(["closeAllApplications.bat"], shell=True)
 
 #Prompting the user for all of the relevent information
 date = date.today()
