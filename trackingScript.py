@@ -23,7 +23,7 @@ df.to_csv('./Progress.csv', index=False)
 #Launching the website of choice
 driver = webdriver.Firefox()
 driver.maximize_window()
-address = 'https://www.wcofun.net/anime/ghost-stories'
+address = 'https://www.google.com/'
 driver.get(address)
 
 
