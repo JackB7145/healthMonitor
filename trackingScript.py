@@ -3,6 +3,15 @@ import pandas
 from datetime import date
 from selenium import webdriver
 import subprocess
+import time
+
+def load_driver(url):
+    #Launching the website of choice
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    address = url
+    driver.get(address)
+    while True: time.sleep(1)
 
 # Calling the batch file to close applications except for VS Code, Discord, and Command Prompt
 subprocess.run(["closeAllApplications.bat"], shell=True)
@@ -20,10 +29,4 @@ newLine = pandas.DataFrame([{"Date":date, "Weight (lb)": w, "Sleep (Hours)":s, "
 df = pandas.concat([df, newLine], ignore_index=True)
 df.to_csv('./Progress.csv', index=False)
 
-#Launching the website of choice
-driver = webdriver.Firefox()
-driver.maximize_window()
-address = 'https://www.google.com/'
-driver.get(address)
-
-
+driver = load_driver('https://www.netflix.com/browse')
