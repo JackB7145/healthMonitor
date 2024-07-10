@@ -1,17 +1,37 @@
-#Importing all of the dependencies
+# Importing all of the dependencies
 import pandas
 from datetime import date
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import subprocess
 import time
+from dotenv import dotenv_values
 
 def load_driver(url):
-    #Launching the website of choice
+    # Launching the website of choice
     driver = webdriver.Chrome()
     driver.maximize_window()
-    address = url
-    driver.get(address)
-    while True: time.sleep(1)
+    driver.get(url)
+    
+    # Explicit wait to ensure elements are loaded
+    wait = WebDriverWait(driver, 10)
+    
+    # Locate username and password fields and input the credentials
+    config = dotenv_values(".env")
+    username = wait.until(EC.presence_of_element_located((By.NAME, "userLoginId")))
+    password = wait.until(EC.presence_of_element_located((By.NAME, "password")))
+    username.send_keys(config['USERNAME'])
+    password.send_keys(config['PASSWORD'])
+    
+    # Locate and click the submit button
+    submitButton = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']")))
+    submitButton.click()
+  
+    # Infinite loop to keep the browser open
+    while True: 
+        pass
 
 # Calling the batch file to close applications except for VS Code, Discord, and Command Prompt
 subprocess.run(["closeAllApplications.bat"], shell=True)
